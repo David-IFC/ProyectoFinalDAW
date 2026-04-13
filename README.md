@@ -9,9 +9,7 @@ En este repositorio se encuentra la entrega del proyecto final del curso de **De
 Puedes ver el esquema del proyecto en Figma aquí:
 
 [Ver esquema en Figma](https://www.figma.com/design/vuSomeRvw7NpGc0NnHxEyj/EsquemaProyectoFinalDAW?node-id=0-1&p=f)
-<a href="https://www.figma.com/design/vuSomeRvw7NpGc0NnHxEyj/EsquemaProyectoFinalDAW?node-id=0-1&p=f" target="_blank">
-Ver esquema en Figma
-</a>
+
 ---
 
 ## 🧩 Descripción del proyecto
@@ -58,3 +56,7 @@ Cada usuario puede:
 - Compararse con otros usuarios registrados
 
 ---
+
+<a href="https://www.figma.com/design/vuSomeRvw7NpGc0NnHxEyj/EsquemaProyectoFinalDAW?node-id=0-1&p=f" target="_blank">
+Ver esquema en Figma
+</a>
