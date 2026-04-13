@@ -20,10 +20,17 @@ Puedes ver el esquema del proyecto en Figma aquí:
 
 Se trata de una aplicación web que incluye **4 minijuegos**, cada uno enfocado en una habilidad distinta:
 
-- Escritura rápida
-- Conteo de letras
-- Resolución de sudoku
-- Precisión con el ratón
+### ⌨️ Escritura rápida
+Mejora de velocidad de tecleo.
+
+### 🔢 Conteo de letras
+Entrenamiento de precisión cognitiva.
+
+### 🧠 Sudoku
+Lógica y razonamiento.
+
+### 🖱️ Precisión con el ratón
+Control fino del cursor.
 
 ---
 
