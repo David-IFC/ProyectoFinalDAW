@@ -1,8 +1,58 @@
-# ProyectoFinalDAW
-En este repositorio está la entrega de el proyecto final para  el curso de Desarrollo de aplicaciones con Tecnologia Web
+# Proyecto Final DAW
+
+En este repositorio se encuentra la entrega del proyecto final del curso de **Desarrollo de Aplicaciones con Tecnología Web**.
+
+---
+
+## 📐 Diseño (Figma)
+
+Puedes ver el esquema del proyecto en Figma aquí:
 
 [Ver esquema en Figma](https://www.figma.com/design/vuSomeRvw7NpGc0NnHxEyj/EsquemaProyectoFinalDAW?node-id=0-1&p=f)
 
-#Resumen del proyecto
+---
 
-Es una página web en la que hay 4 minijuegos en los que se usa una habilidad distinta, desde escribir rapido hasta destreza con el raton a la hora de apuntar, la aplicación soporta 2 idiomas, Español e Ingles, los cuales se gestionan tanto por php como por js , tambien cuenta con un sistema de registro de usuarios gracias a el cual puedes ver tus puntuaciones asi como las puntuaciones de otros usuarios registrados en la web. 
+## 🧩 Descripción del proyecto
+
+Se trata de una aplicación web que incluye **4 minijuegos**, cada uno enfocado en una habilidad distinta:
+
+- Escritura rápida
+- Conteo de letras
+- Resolución de sudoku
+- Precisión con el ratón
+
+---
+
+## 🌍 Características principales
+
+- **Multidioma**: Español e Inglés  
+  - Gestión tanto en **PHP** como en **JavaScript**
+
+- **Sistema de usuarios**:
+  - Registro y autenticación
+  - Almacenamiento de puntuaciones
+
+- **Ranking**:
+  - Consulta de puntuaciones propias
+  - Comparación con otros usuarios
+
+---
+
+## 🗂️ Tecnologías utilizadas
+
+- PHP
+- JavaScript
+- MySQL
+- HTML / CSS
+
+---
+
+## 📊 Funcionalidad de puntuaciones
+
+Cada usuario puede:
+
+- Guardar sus resultados en cada minijuego
+- Consultar su mejor puntuación
+- Compararse con otros usuarios registrados
+
+---
