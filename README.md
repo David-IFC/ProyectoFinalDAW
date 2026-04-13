@@ -1,11 +1,5 @@
-## 🎮 Minijuego: Puntería
 
-<details>
-<summary>Ver demo</summary>
 
-![Punteria](ruta.gif)
-
-</details>
 # Proyecto Final DAW
 
 En este repositorio se encuentra la entrega del proyecto final del curso de **Desarrollo de Aplicaciones con Tecnología Web**.
