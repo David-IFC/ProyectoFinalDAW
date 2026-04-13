@@ -57,6 +57,3 @@ Cada usuario puede:
 
 ---
 
-<a href="https://www.figma.com/design/vuSomeRvw7NpGc0NnHxEyj/EsquemaProyectoFinalDAW?node-id=0-1&p=f" target="_blank">
-Ver esquema en Figma
-</a>
