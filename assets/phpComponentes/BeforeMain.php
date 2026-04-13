@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $titulo; ?></title>
+    <meta name="description"
+        content="<?php echo htmlspecialchars($descripcion); ?>">
     <link rel="icon" type="image/png" href="assets/img/favicon-32x32.png">
     <link rel="stylesheet" href="assets/style.css?v=<?php echo date('U') ?>">
 </head>
@@ -20,7 +22,7 @@
 
             if ($home) {
 
-                echo '<button class="home" onclick="transicion(\'index.php?lang=' . $lang . '\')"><img src="assets/img/Logo.png" alt=""> </button>';
+                echo '<button class="home" onclick="transicion(\'index.php?lang=' . $lang . '\')"><img src="assets/img/Logo.png" alt="Volver a Inicio"> </button>';
 
             }
 

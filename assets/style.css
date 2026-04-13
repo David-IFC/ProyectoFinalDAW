@@ -1572,6 +1572,9 @@ body.Puntuaciones .contenedorPrincipal {
 
     background: rgba(26, 24, 24, 0.767);
     border-radius: 4%;
+    width: fit-content;
+    max-width: calc(100vw - 140px);
+    margin: 0 auto;
     backdrop-filter: var(--blur-sm);
     padding: 30px 20px;
     border: var(--border-neon);
@@ -1582,15 +1585,22 @@ body.Puntuaciones .contenedorPrincipal {
 body.Puntuaciones .tabla-general {
     border-collapse: separate;
     border-spacing: 0;
+    table-layout: auto;
+    width: auto;
+    margin: 0 auto;
 }
 
 body.Puntuaciones .tabla-general td {
     min-width: 140px;
     padding: 10px 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
 }
 
 body.Puntuaciones .tabla-general td:first-child {
     min-width: 180px;
+    width: auto;
 }
 
 @media (max-width: 740px) {
@@ -1634,6 +1644,15 @@ body.Puntuaciones .tabla-general td:first-child {
 
     body.Puntuaciones td:first-child {
         width: 28%;
+    }
+
+    body.Puntuaciones .tabla-general {
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    body.Puntuaciones .tabla-general td:first-child {
+        width: 34%;
     }
 
     body.Puntuaciones .botonesRegistro {
