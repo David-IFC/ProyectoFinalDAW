@@ -22,7 +22,7 @@ Puedes ver el esquema del proyecto en Figma aquí:
 Se trata de una aplicación web que incluye **4 minijuegos**, cada uno enfocado en una habilidad distinta:
 
 ### ⌨️ Escritura rápida
-Mejora de velocidad de tecleo.
+Mejora de velocidad de escritura con el teclado.
 
 ### 🔢 Conteo de letras
 Entrenamiento de precisión cognitiva.
