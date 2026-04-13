@@ -41,5 +41,8 @@
     "Mejor":"Best",
     "Intento":"Attempt",
     "Puntuaciones de":"'s Scores",
-    "metaDescription":"TestYourSkills: brain-skill minigame platform with timed challenges, sudoku, aim, and letter count."
+    "metaDescription":"TestYourSkills: brain-skill minigame platform with timed challenges, sudoku, aim, and letter count.",
+    "PuntuacionesGenerales":"General scores",
+    "NoUsuarios":"There are no registered users yet."
+
 }

@@ -36,19 +36,13 @@ $puntuacionesGenerales = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <?php include "assets/phpComponentes/BeforeMain.php"; ?>
 
 <main>
-    <?php if ($lang == "es"): ?>
-        <h1>Puntuaciones generales</h1>
-    <?php elseif ($lang == "en"): ?>
-        <h1>General scores</h1>
-    <?php endif; ?>
+    <h1><?php echo $texto["PuntuacionesGenerales"] ?></h1>
 
     <div class="contenedorPrincipal">
         <?php if (empty($puntuacionesGenerales)): ?>
-            <?php if ($lang == "es"): ?>
-                <p>No hay usuarios registrados todavia.</p>
-            <?php elseif ($lang == "en"): ?>
-                <p>There are no registered users yet.</p>
-            <?php endif; ?>
+            <p>
+                <?php $texto["NoUsuarios"] ?>
+            </p>
         <?php else: ?>
             <table class="matriz tabla-general" border="1">
                 <tr>
@@ -59,8 +53,10 @@ $puntuacionesGenerales = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?php echo $texto["punteria"]; ?></td>
                 </tr>
                 <?php foreach ($puntuacionesGenerales as $puntuaciones): ?>
-                    <tr>
-                        <td class="col-usuario"><?php echo htmlspecialchars($puntuaciones['user']); ?></td>
+                    <tr class="<?php echo ($puntuaciones['user'] === $nombreUsuario) ? 'fila-usuario-actual' : ''; ?>">
+                        <td class="col-usuario <?php echo ($puntuaciones['user'] === $nombreUsuario) ? 'usuario-actual' : ''; ?>">
+                            <?php echo htmlspecialchars($puntuaciones['user']); ?>
+                        </td>
                         <td><?php echo $puntuaciones['TiempoTexto_mejor'] ?? ''; ?></td>
                         <td><?php echo $puntuaciones['CuentaLetras_mejor'] ?? ''; ?></td>
                         <td><?php echo $puntuaciones['Sudoku_mejor'] ?? ''; ?></td>

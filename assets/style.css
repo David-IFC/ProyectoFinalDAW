@@ -589,6 +589,10 @@ body.Puntuaciones main {
     box-sizing: border-box;
 }
 
+body.Puntuaciones {
+    overflow-y: auto;
+}
+
 
 
 
@@ -1601,6 +1605,14 @@ body.Puntuaciones .tabla-general td {
 body.Puntuaciones .tabla-general td:first-child {
     min-width: 180px;
     width: auto;
+}
+
+body.Puntuaciones .tabla-general .usuario-actual {
+    color: #00ffcc;
+}
+
+body.Puntuaciones .tabla-general .fila-usuario-actual td {
+    color: #00ffcc;
 }
 
 @media (max-width: 740px) {
