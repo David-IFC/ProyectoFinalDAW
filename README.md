@@ -1,13 +1,11 @@
 
-
-
 # Proyecto Final DAW
 
 En este repositorio se encuentra la entrega del proyecto final del curso de **Desarrollo de Aplicaciones con Tecnología Web**.
 
 ---
 
-## <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcnJoNmJ6OHdiNnBuN2kzemRmaXdza2hpYTBmbGNxZ2FqdG5mZnYyOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l41lVyCmpkg87cbAc/giphy.gif" width="50"> Diseño (Figma)
+## 📐Diseño (Figma)
 
 Puedes ver el esquema del proyecto en Figma aquí:
 
