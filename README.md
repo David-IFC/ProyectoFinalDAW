@@ -2,7 +2,7 @@
 En este repositorio está la entrega de el proyecto final para  el curso de Desarrollo de aplicaciones con Tecnologia Web
 
 #Esquema en Figma
-https://www.figma.com/design/vuSomeRvw7NpGc0NnHxEyj/EsquemaProyectoFinalDAW?node-id=0-1&p=f
+# https://www.figma.com/design/vuSomeRvw7NpGc0NnHxEyj/EsquemaProyectoFinalDAW?node-id=0-1&p=f
 
 #Resumen del proyecto
 
