@@ -1,8 +1,9 @@
 # ProyectoFinalDAW
 En este repositorio está la entrega de el proyecto final para  el curso de Desarrollo de aplicaciones con Tecnologia Web
 
-#Esquema en Figma
-# https://www.figma.com/design/vuSomeRvw7NpGc0NnHxEyj/EsquemaProyectoFinalDAW?node-id=0-1&p=f
+<a href="https://www.figma.com/design/vuSomeRvw7NpGc0NnHxEyj/EsquemaProyectoFinalDAW?node-id=0-1&p=f" target="_blank">
+Ver esquema en Figma
+</a>
 
 #Resumen del proyecto
 
