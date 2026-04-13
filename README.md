@@ -1,4 +1,4 @@
-<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2hqeDU2NHd6YXc1b20yajFrcGVueDMwNm95bTkybGcwcW9tdTJiOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hp2yMQLrvuVv8mKZOb/giphy.gif" width="400">
+<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2hqeDU2NHd6YXc1b20yajFrcGVueDMwNm95bTkybGcwcW9tdTJiOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hp2yMQLrvuVv8mKZOb/giphy.gif" width="150">
 
 # Proyecto Final DAW
 
