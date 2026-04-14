@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $titulo; ?></title>
-    <meta name="description"
-        content="<?php echo htmlspecialchars($descripcion); ?>">
+    <meta name="description" content="<?php echo htmlspecialchars($descripcion); ?>">
     <link rel="icon" type="image/png" href="assets/img/favicon-32x32.png">
     <link rel="stylesheet" href="assets/style.css?v=<?php echo date('U') ?>">
 </head>
