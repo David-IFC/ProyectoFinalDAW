@@ -14,7 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $usuario = $_POST["username"] ?? '';
     $password = $_POST["password"] ?? '';
-    echo "usuario: " . $usuario . " psw: " . $password . "<br>";
     if (!empty($usuario) && !empty($password)) {
 
 

@@ -585,12 +585,16 @@ body.IniciarSesion main {
 }
 
 body.Puntuaciones main {
-    padding-top: 36px;
+    padding-top: 72px;
     box-sizing: border-box;
 }
 
 body.Puntuaciones {
     overflow-y: auto;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 24px;
+    box-sizing: border-box;
 }
 
 
@@ -1563,6 +1567,8 @@ body.IniciarSesion .contenedorPrincipal {
 
 body.Puntuaciones h1 {
     text-align: center;
+    margin-top: 0;
+    margin-bottom: 24px;
 }
 
 body.Puntuaciones td {
@@ -1623,6 +1629,7 @@ body.Puntuaciones .tabla-general .fila-usuario-actual td {
     }
 
     body.Puntuaciones h1 {
+        margin-top: 0;
         margin-bottom: 12px;
         font-size: 22px;
         line-height: 1.25;
