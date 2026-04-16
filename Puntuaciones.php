@@ -14,7 +14,7 @@ if (!isset($_SESSION['NombreUsuario'])) {
 
 <?php
 $clase = "Puntuaciones";
-$java = "";
+$java = "Puntuaciones.js";
 $home = true;
 ?>
 <?php require_once "assets/db/db.php";
@@ -48,74 +48,46 @@ $puntuaciones = $stmt->fetch();
         <h1> <?php echo $nombreUsuario; ?><?php echo $texto["Puntuaciones de"]; ?></h1>
     <?php endif; ?>
     <div class="contenedorPrincipal">
-        <table class="matriz" border="1">
-            <tr>
-                <td> <?php echo $texto["Prueba"]; ?></td>
-                <td><?php echo $texto["Intento"]; ?> 1</td>
-                <td><?php echo $texto["Intento"]; ?> 2</td>
-                <td><?php echo $texto["Intento"]; ?> 3</td>
-                <td><?php echo $texto["Mejor"]; ?> <?php echo $texto["Intento"] ?></td>
-            </tr>
-            <tr>
-                <td><?php echo $texto["tiempoTexto"]; ?></td>
-                <td>
-                    <?php echo $puntuaciones['TiempoTexto_intento1'] ?? ''; ?>
-                </td>
-                <td>
-                    <?php echo $puntuaciones['TiempoTexto_intento2'] ?? ''; ?>
-                </td>
-                <td>
-                    <?php echo $puntuaciones['TiempoTexto_intento3'] ?? ''; ?>
-                </td>
-                <td>
-                    <?php echo $puntuaciones['TiempoTexto_mejor'] ?? ''; ?>
-                </td>
-            </tr>
-            <tr>
-                <td><?php echo $texto["cuentaLetras"]; ?></td>
-                <td>
-                    <?php echo $puntuaciones['CuentaLetras_intento1'] ?? ''; ?>
-                </td>
-                <td>
-                    <?php echo $puntuaciones['CuentaLetras_intento2'] ?? ''; ?>
-                </td>
-                <td>
-                    <?php echo $puntuaciones['CuentaLetras_intento3'] ?? ''; ?>
-                </td>
-                <td>
-                    <?php echo $puntuaciones['CuentaLetras_mejor'] ?? ''; ?>
-                </td>
-            </tr>
-            <tr>
-                <td><?php echo $texto["sudoku"]; ?></td>
-                <td>
-                    <?php echo $puntuaciones['Sudoku_intento1'] ?? ''; ?>
-                </td>
-                <td>
-                    <?php echo $puntuaciones['Sudoku_intento2'] ?? ''; ?>
-                </td>
-                <td>
-                    <?php echo $puntuaciones['Sudoku_intento3'] ?? ''; ?>
-                </td>
-                <td>
-                    <?php echo $puntuaciones['Sudoku_mejor'] ?? ''; ?>
-                </td>
-            </tr>
-            <tr>
-                <td><?php echo $texto["punteria"]; ?></td>
-                <td>
-                    <?php echo $puntuaciones['Punteria_intento1'] ?? ''; ?>
-                </td>
-                <td>
-                    <?php echo $puntuaciones['Punteria_intento2'] ?? ''; ?>
-                </td>
-                <td>
-                    <?php echo $puntuaciones['Punteria_intento3'] ?? ''; ?>
-                </td>
-                <td>
-                    <?php echo $puntuaciones['Punteria_mejor'] ?? ''; ?>
-                </td>
-            </tr>
+        <table class="matriz tabla-general" border="1" style="visibility:hidden">
+            <thead>
+                <tr>
+                    <th data-column="0"> <?php echo $texto["Prueba"]; ?></th>
+                    <th data-column="1"><?php echo $texto["Intento"]; ?> 1</th>
+                    <th data-column="2"><?php echo $texto["Intento"]; ?> 2</th>
+                    <th data-column="3"><?php echo $texto["Intento"]; ?> 3</th>
+                    <th data-column="4"><?php echo $texto["Mejor"]; ?> <?php echo $texto["Intento"] ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><?php echo $texto["tiempoTexto"]; ?></td>
+                    <td><?php echo $puntuaciones['TiempoTexto_intento1'] ?? ''; ?></td>
+                    <td><?php echo $puntuaciones['TiempoTexto_intento2'] ?? ''; ?></td>
+                    <td><?php echo $puntuaciones['TiempoTexto_intento3'] ?? ''; ?></td>
+                    <td><?php echo $puntuaciones['TiempoTexto_mejor'] ?? ''; ?></td>
+                </tr>
+                <tr>
+                    <td><?php echo $texto["cuentaLetras"]; ?></td>
+                    <td><?php echo $puntuaciones['CuentaLetras_intento1'] ?? ''; ?></td>
+                    <td><?php echo $puntuaciones['CuentaLetras_intento2'] ?? ''; ?></td>
+                    <td><?php echo $puntuaciones['CuentaLetras_intento3'] ?? ''; ?></td>
+                    <td><?php echo $puntuaciones['CuentaLetras_mejor'] ?? ''; ?></td>
+                </tr>
+                <tr>
+                    <td><?php echo $texto["sudoku"]; ?></td>
+                    <td><?php echo $puntuaciones['Sudoku_intento1'] ?? ''; ?></td>
+                    <td><?php echo $puntuaciones['Sudoku_intento2'] ?? ''; ?></td>
+                    <td><?php echo $puntuaciones['Sudoku_intento3'] ?? ''; ?></td>
+                    <td><?php echo $puntuaciones['Sudoku_mejor'] ?? ''; ?></td>
+                </tr>
+                <tr>
+                    <td><?php echo $texto["punteria"]; ?></td>
+                    <td><?php echo $puntuaciones['Punteria_intento1'] ?? ''; ?></td>
+                    <td><?php echo $puntuaciones['Punteria_intento2'] ?? ''; ?></td>
+                    <td><?php echo $puntuaciones['Punteria_intento3'] ?? ''; ?></td>
+                    <td><?php echo $puntuaciones['Punteria_mejor'] ?? ''; ?></td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </main>

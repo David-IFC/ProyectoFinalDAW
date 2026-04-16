@@ -44,25 +44,31 @@ $puntuacionesGenerales = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php $texto["NoUsuarios"] ?>
             </p>
         <?php else: ?>
-            <table class="matriz tabla-general" border="1">
-                <tr>
-                    <td class="col-usuario"><?php echo htmlspecialchars($texto["nombreDeUsuarioTabla"]); ?></td>
-                    <td><?php echo $texto["tiempoTexto"]; ?></td>
-                    <td><?php echo $texto["cuentaLetras"]; ?></td>
-                    <td>Sudoku</td>
-                    <td><?php echo $texto["punteria"]; ?></td>
-                </tr>
-                <?php foreach ($puntuacionesGenerales as $puntuaciones): ?>
-                    <tr class="<?php echo ($puntuaciones['user'] === $nombreUsuario) ? 'fila-usuario-actual' : ''; ?>">
-                        <td class="col-usuario <?php echo ($puntuaciones['user'] === $nombreUsuario) ? 'usuario-actual' : ''; ?>">
-                            <?php echo htmlspecialchars($puntuaciones['user']); ?>
-                        </td>
-                        <td><?php echo $puntuaciones['TiempoTexto_mejor'] ?? ''; ?></td>
-                        <td><?php echo $puntuaciones['CuentaLetras_mejor'] ?? ''; ?></td>
-                        <td><?php echo $puntuaciones['Sudoku_mejor'] ?? ''; ?></td>
-                        <td><?php echo $puntuaciones['Punteria_mejor'] ?? ''; ?></td>
+            <table class="matriz tabla-general" border="1" style="visibility:hidden">
+                <thead>
+                    <tr>
+                        <th class="col-usuario" data-column="0">
+                            <?php echo htmlspecialchars($texto["nombreDeUsuarioTabla"]); ?>
+                        </th>
+                        <th data-column="1"><?php echo $texto["tiempoTexto"]; ?></th>
+                        <th data-column="2"><?php echo $texto["cuentaLetras"]; ?></th>
+                        <th data-column="3">Sudoku</th>
+                        <th data-column="4"><?php echo $texto["punteria"]; ?></th>
                     </tr>
-                <?php endforeach; ?>
+                </thead>
+                <tbody>
+                    <?php foreach ($puntuacionesGenerales as $puntuaciones): ?>
+                        <tr class="<?php echo ($puntuaciones['user'] === $nombreUsuario) ? 'fila-usuario-actual' : ''; ?>">
+                            <td class="col-usuario <?php echo ($puntuaciones['user'] === $nombreUsuario) ? 'usuario-actual' : ''; ?>">
+                                <?php echo htmlspecialchars($puntuaciones['user']); ?>
+                            </td>
+                            <td><?php echo $puntuaciones['TiempoTexto_mejor'] ?? ''; ?></td>
+                            <td><?php echo $puntuaciones['CuentaLetras_mejor'] ?? ''; ?></td>
+                            <td><?php echo $puntuaciones['Sudoku_mejor'] ?? ''; ?></td>
+                            <td><?php echo $puntuaciones['Punteria_mejor'] ?? ''; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
             </table>
         <?php endif; ?>
     </div>
