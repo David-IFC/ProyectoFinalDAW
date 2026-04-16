@@ -11,7 +11,7 @@ En este repositorio se encuentra la entrega del proyecto final del curso de **De
 [Enlace a Pagina en InfinityFree](https://david-ifcdaw.page.gd/)
 ## 📊 Presentación del proyecto
 
-[Ver presentación (PDF)](https://github.com/David-IFC/ProyectoFinalDAW/tree/main/info/ProyectoFinalDAW.pdf)
+[Ver presentación (PDF)](./info/ProyectoFinalDAW.pdf)
 
 ## 📐Diseño (Figma)
 
