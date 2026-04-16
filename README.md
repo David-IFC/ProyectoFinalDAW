@@ -9,7 +9,10 @@ En este repositorio se encuentra la entrega del proyecto final del curso de **De
 ---
 ## 🎮 Página Web
 [Enlace a Pagina en InfinityFree](https://david-ifcdaw.page.gd/)
-## 📊 Presentacion del proyecto (./info/ProyectoFinalDAW.pdf)
+## 📊 Presentación del proyecto
+
+[Ver presentación (PDF)](./info/ProyectoFinalDAW.pdf)
+
 ## 📐Diseño (Figma)
 
 Puedes ver el esquema del proyecto en Figma aquí:
