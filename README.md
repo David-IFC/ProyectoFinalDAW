@@ -41,7 +41,7 @@ Entrenamiento de precisión cognitiva.
 Lógica y razonamiento.
 
 ### 🖱️ Precisión con el ratón
-Control fino del cursor.
+Velocidad de movimiento del raton
 
 ---
 
