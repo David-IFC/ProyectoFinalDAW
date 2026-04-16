@@ -1,4 +1,7 @@
+![Status](https://img.shields.io/badge/status-completed-green?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-1.0-blue?style=for-the-badge)
 
+---
 # Proyecto Final DAW
 
 En este repositorio se encuentra la entrega del proyecto final del curso de **Desarrollo de Aplicaciones con Tecnología Web**.
