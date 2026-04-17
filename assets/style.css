@@ -97,6 +97,9 @@ img {
     max-width: 100%;
 }
 
+
+
+
 @keyframes float {
     0% {
         transform: translateY(100vh) translateX(0);
@@ -460,7 +463,7 @@ body.Puntuaciones button:active {
 .tabla-general th {
     cursor: pointer;
     background: linear-gradient(135deg, rgba(0, 255, 204, 0.05), rgba(0, 0, 0, 0.2));
-    transition: all var(--transition-fast);
+    transition: all 0.1s ease;
     position: relative;
     user-select: none;
     padding: 15px 10px;
@@ -1648,6 +1651,42 @@ body.Puntuaciones .tabla-general td {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: clip;
+    transition: font-size 0.1s ease, white-space 0.1s ease;
+}
+
+/* Responsive para tablet y móvil */
+@media (max-width: 1053px) {
+    body.Puntuaciones .tabla-general td {
+        font-size: 12px;
+        white-space: normal;
+        word-break: break-word;
+        hyphens: auto;
+        line-height: 1.3;
+    }
+    
+    body.Puntuaciones .tabla-general td:first-child {
+        font-size: 10px;
+        min-width: 120px;
+        max-width: 140px;
+    }
+    
+    body.Puntuaciones .tabla-general th {
+        font-size: 12px;
+        hyphens: auto;
+    }
+}
+
+/* Responsive para móvil pequeño */
+@media (max-width: 768px) {
+    body.Puntuaciones .tabla-general td {
+        font-size: 11px;
+        padding: 8px 10px;
+    }
+    
+    body.Puntuaciones .tabla-general th {
+        font-size: 11px;
+        padding: 10px 6px;
+    }
 }
 
 body.Puntuaciones .tabla-general td:first-child {

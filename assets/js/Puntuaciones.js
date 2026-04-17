@@ -1,49 +1,10 @@
 function ajustarTextoTablaGeneral() {
+    // CSS @media queries maneja todo el responsive automáticamente
+    // Solo necesitamos mostrar la tabla si estaba oculta
     const table = document.querySelector(".tabla-general");
-    if (!table) return;
-    
-    table.style.visibility = "hidden";
-    const celdas = table.querySelectorAll("td, th");
-
-    // Desactivar transiciones para evitar el efecto de parpadeo durante el cálculo
-    celdas.forEach(c => c.style.transition = "none");
-
-    celdas.forEach((celda) => {
-        let tamano = window.innerWidth <= 1053 ? 12 : 16;
-
-        if (window.innerWidth <= 1053 && celda.tagName === "TD" && (celda.cellIndex === 0)) {
-            const esCuentaLetras = celda.textContent.trim().includes("CuentaLetras");
-            celda.style.fontSize = esCuentaLetras ? "11px" : "10px";
-            celda.style.whiteSpace = "normal";
-            celda.style.wordBreak = "break-word";
-            return;
-        }
-
-        celda.style.fontSize = tamano + "px";
-
-        if (window.innerWidth <= 1053 && celda.textContent.trim().includes("CuentaLetras")) {
-            celda.style.fontSize = "11px";
-        }
-        
-        if (window.innerWidth <= 1053) {
-            celda.style.whiteSpace = "normal";
-            celda.style.wordBreak = "break-word";
-        } else {
-            celda.style.whiteSpace = "nowrap";
-        }
-
-        while (celda.scrollWidth > celda.clientWidth && tamano > 6) {
-            tamano -= 1;
-            celda.style.fontSize = tamano + "px";
-        }
-    });
-
-    table.style.visibility = "visible";
-
-    // Restaurar transiciones después de que el layout esté estable
-    setTimeout(() => {
-        celdas.forEach(c => c.style.transition = "");
-    }, 50);
+    if (table) {
+        table.style.visibility = "visible";
+    }
 }
 
 function initSorting() {
