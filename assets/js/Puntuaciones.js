@@ -1,10 +1,48 @@
 function ajustarTextoTablaGeneral() {
-    // CSS @media queries maneja todo el responsive automáticamente
-    // Solo necesitamos mostrar la tabla si estaba oculta
     const table = document.querySelector(".tabla-general");
-    if (table) {
-        table.style.visibility = "visible";
-    }
+    if (!table) return;
+    
+    table.style.visibility = "hidden"; // Ocultar temporalmente para evitar parpadeo
+    
+    const celdas = table.querySelectorAll("td, th");
+
+    // Usar requestAnimationFrame para cambios instantáneos y sin parpadeo
+    requestAnimationFrame(() => {
+        celdas.forEach((celda) => {
+            let tamano = window.innerWidth <= 1053 ? 12 : 16;
+
+            if (window.innerWidth <= 1053 && celda.tagName === "TD" && (celda.cellIndex === 0)) {
+                const esCuentaLetras = celda.textContent.trim().includes("CuentaLetras");
+                celda.style.fontSize = esCuentaLetras ? "11px" : "10px";
+                celda.style.whiteSpace = "normal";
+                celda.style.wordBreak = "break-word";
+                return;
+            }
+
+            celda.style.fontSize = tamano + "px";
+
+            if (window.innerWidth <= 1053 && celda.textContent.trim().includes("CuentaLetras")) {
+                celda.style.fontSize = "11px";
+            }
+            
+            if (window.innerWidth <= 1053) {
+                celda.style.whiteSpace = "normal";
+                celda.style.wordBreak = "break-word";
+            } else {
+                celda.style.whiteSpace = "nowrap";
+            }
+
+            while (celda.scrollWidth > celda.clientWidth && tamano > 6) {
+                tamano -= 1;
+                celda.style.fontSize = tamano + "px";
+            }
+        });
+        
+        // Hacer la tabla visible después de todos los cálculos
+        requestAnimationFrame(() => {
+            table.style.visibility = "visible";
+        });
+    });
 }
 
 function initSorting() {
