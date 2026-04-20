@@ -6,8 +6,6 @@
 <?php
 $clase = "Punteria";
 $java = "Punteria.js";
-
-
 ?>
 
 <?php include "assets/phpComponentes/BeforeMain.php"; ?>

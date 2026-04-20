@@ -73,6 +73,15 @@ body,
     cursor: url("img/Normal Select.cur"), auto !important;
 }
 
+/* Cursor de precisión para juego de Puntería */
+body.Punteria table.cursor-precision {
+    cursor: url("img/Precision Select.cur"), auto !important;
+}
+
+body.Punteria table.cursor-precision td {
+    cursor: url("img/Precision Select.cur"), auto !important;
+}
+
 /* Sobrescribir el pointer */
 a,
 button,
@@ -1666,6 +1675,9 @@ body.Puntuaciones .tabla-general {
     border-spacing: 0;
     table-layout: auto;
     width: auto;
+    max-width: 900px;
+    max-height: 70vh;
+    overflow-y: auto;
     margin: 0 auto;
     visibility: hidden;
     /* Ocultar para evitar parpadeo al cargar */
@@ -1724,8 +1736,10 @@ body.Puntuaciones .tabla-general .usuario-actual {
     color: #00ffcc;
 }
 
-body.Puntuaciones .tabla-general .fila-usuario-actual td {
-    color: #00ffcc;
+/* Ajustar anchos de columna para cohesión */
+body.Puntuaciones .tabla-general th.col-usuario {
+    min-width: 140px;
+    max-width: 180px;
 }
 
 @media (max-width: 1053px) {

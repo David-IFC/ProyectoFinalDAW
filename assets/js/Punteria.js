@@ -9,8 +9,12 @@ let errores = 0;
 let resultadoFinal = 0;
 /**decididira que paneles se ponen a verde */
 let panelVerde = 0;
+/**guardar el cursor original para restaurarlo después */
+let cursorOriginal = "";
 /**sirve para almacenar  el color de la casilla en cuestion  */
 let colorFondo;
+
+
 function cambiarFondo() {
     const celdas = document.querySelectorAll("td");
     for (let index = 0; index < celdas.length; index++) {
@@ -66,6 +70,11 @@ function gestionTemporal() {
 
             document.querySelector(".textAreaBotones-TiempoTexto").style.display = "none";
             clearInterval(cuentaAtras);
+            //añadir clase cursor-precision a la tabla
+            const tabla = document.querySelector("body.Punteria table");
+            if (tabla) {
+                tabla.classList.add("cursor-precision");
+            }
             //gestion de el p tiempo
             document.querySelector(".numeroTiempo-TiempoTexto").textContent = tiempoTextoUsuario;
             //cambiamos la imagen del temporizador
@@ -98,7 +107,7 @@ function gestionTemporal() {
                     panelVerde = Math.floor(Math.random() * 100);
                     colorFondo = document.getElementById(panelVerde).style.backgroundColor;
                     //comprobamos que la celda no este ya pintada de verde;
-                    while (colorFondo == "green") {
+                    while (colorFondo == "green" || colorFondo == "red") {
 
                         panelVerde = Math.floor(Math.random() * 100);
                         colorFondo = document.getElementById(panelVerde).style.backgroundColor;
@@ -110,7 +119,7 @@ function gestionTemporal() {
                         panelVerde = Math.floor(Math.random() * 100);
                         colorFondo = document.getElementById(panelVerde).style.backgroundColor;
                         //comprobamos que la celda no este ya pintada de verde;
-                        while (colorFondo == "green") {
+                        while (colorFondo == "green"|| colorFondo == "red") {
 
                             panelVerde = Math.floor(Math.random() * 100);
                             colorFondo = document.getElementById(panelVerde).style.backgroundColor;
@@ -123,6 +132,11 @@ function gestionTemporal() {
                 if (tiempoTextoUsuario == -1) {
 
                     clearInterval(pararTiempo);
+                    //quitar clase cursor-precision de la tabla
+                    const tabla = document.querySelector("body.Punteria table");
+                    if (tabla) {
+                        tabla.classList.remove("cursor-precision");
+                    }
                     restaurarVelocidadParticulas();
                     ocultarDivTiempo();
                     //deshabilitamos los eventos de las celdas
