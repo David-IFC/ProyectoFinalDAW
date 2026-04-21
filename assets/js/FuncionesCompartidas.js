@@ -178,3 +178,24 @@ function ActualizaPuntos(nombreJuego,resultado) {
     });
 
 }
+
+/** comprueba si la puntuación obtenida es la puntuación máxima del usuario en ese juego
+ * @param {string} nombreJuego - nombre del juego (TiempoTexto, Sudoku, CuentaLetras, Punteria)
+ * @param {number} puntuacion - puntuación obtenida
+ * @returns {Promise<boolean>} - true si es la puntuación máxima, false en caso contrario
+ */
+async function esPuntuacionMaxima(nombreJuego, puntuacion) {
+    try {
+        const response = await fetch('assets/db/ConsultarPuntuacionMaxima.php', {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: 'juego=' + nombreJuego + '&puntuacion=' + puntuacion
+        });
+        const resultado = await response.json();
+        return resultado.es_maxima;
+    } catch (error) {
+        console.error('Error al consultar puntuación máxima:', error);
+        return false;
+    }
+}

@@ -119,7 +119,7 @@ function gestionTemporal() {
                         panelVerde = Math.floor(Math.random() * 100);
                         colorFondo = document.getElementById(panelVerde).style.backgroundColor;
                         //comprobamos que la celda no este ya pintada de verde;
-                        while (colorFondo == "green"|| colorFondo == "red") {
+                        while (colorFondo == "green" || colorFondo == "red") {
 
                             panelVerde = Math.floor(Math.random() * 100);
                             colorFondo = document.getElementById(panelVerde).style.backgroundColor;
@@ -159,20 +159,10 @@ function gestionTemporal() {
                         }
                     }
 
-
-                    const resultado = document.querySelector(".resultadoTiempo");
-                    resultado.classList.remove("oculto");
-                    resultado.classList.add("mostrar");
-                    resultado.style.display = "block"; // fuerza que se muestre
-                    resultado.style.opacity = "1";
-                    resultado.style.transform = "translateY(-8px) scale(1)";
-                    resultado.offsetHeight;
-
                     let Aciertos;
                     let Errores;
                     let Puntuacion;
                     if (sessionStorage.getItem('idioma') == "es") {
-
                         Aciertos = "Aciertos: ";
                         Errores = "Errores: ";
                         Puntuacion = "Puntuacion: ";
@@ -181,29 +171,63 @@ function gestionTemporal() {
                         Errores = "Mistakes: ";
                         Puntuacion = "Score: ";
                     }
+                    
                     if ((aciertos - errores) < 0) {
                         resultadoFinal = 0;
                     } else {
                         resultadoFinal = aciertos - errores;
                     }
-                    resultado.innerHTML =
-                        Aciertos + aciertos + " &nbsp;&nbsp;&nbsp;" +
-                        Errores + errores + "<br> <br>" + "<span class='puntuacion'>" + Puntuacion + resultadoFinal
-                        + "</span>";
-                    document.querySelector(".puntuacion").style.fontSize = "20px";
-                    let grosorActual = window.getComputedStyle(resultado).borderWidth;
-                    // Convertir a número
-                    let grosor = parseInt(grosorActual);
-                    // Aumentar el grosor
-                    grosor += 5;
-                    resultado.style.borderWidth = grosor + "px";
-                    const botonReintentar = document.querySelector(".reintentar");
-                    botonReintentar.classList.remove("oculto");
-                    botonReintentar.style.display = "inline";
-                    botonReintentar.style.boxShadow = "none";
 
-                    //Actualizamos la puntuacion en la base de datos
-                    ActualizaPuntos("Punteria", resultadoFinal);
+                    const resultado = document.querySelector(".resultadoTiempo");
+                    
+                    // Función interna para manejar la puntuación de forma asíncrona y evitar condiciones de carrera
+                    const procesarRecordYActualizar = async () => {
+                        if (sessionStorage.getItem('usuarioLogeado') === 'true') {
+                            try {
+                                // 1. Comprobar si es máxima puntuación ANTES de actualizar la DB
+                                const esMaxima = await esPuntuacionMaxima("Punteria", resultadoFinal);
+                                
+                                if (esMaxima) {
+                                    resultado.classList.add("nueva-puntuacion-maxima");
+                                    if (sessionStorage.getItem('idioma') == "en") {
+                                        resultado.style.setProperty('--record-text', '"Personal"');
+                                        resultado.style.setProperty('--personal-text', '"Record"');
+                                        resultado.style.setProperty('--right-position', '-100px');
+                                    }
+                                }
+                                
+                                // 2. Actualizar puntos en la DB una vez hecha la comprobación
+                                ActualizaPuntos("Punteria", resultadoFinal);
+                            } catch (error) {
+                                console.error('Error procesando puntuación:', error);
+                            }
+                        }
+
+                        // 3. Actualizar la UI final (dentro del flujo asíncrono)
+                        resultado.innerHTML =
+                            Aciertos + aciertos + " &nbsp;&nbsp;&nbsp;" +
+                            Errores + errores + "<br> <br>" + "<span class='puntuacion'>" + Puntuacion + resultadoFinal
+                            + "</span>";
+                        
+                        document.querySelector(".puntuacion").style.fontSize = "20px";
+                        let grosorActual = window.getComputedStyle(resultado).borderWidth;
+                        let grosor = parseInt(grosorActual);
+                        grosor += 5;
+                        resultado.style.borderWidth = grosor + "px";
+
+                        resultado.classList.remove("oculto");
+                        resultado.classList.add("mostrar");
+                        resultado.style.display = "block";
+                        resultado.style.opacity = "1";
+                        resultado.style.transform = "translateY(-8px) scale(1)";
+                        
+                        const botonReintentar = document.querySelector(".reintentar");
+                        botonReintentar.classList.remove("oculto");
+                        botonReintentar.style.display = "inline";
+                        botonReintentar.style.boxShadow = "none";
+                    };
+
+                    procesarRecordYActualizar();
                 }
             }, 1000);
 

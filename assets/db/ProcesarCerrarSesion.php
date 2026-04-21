@@ -11,7 +11,7 @@ if (isset($_GET['lang'])) {
 }
 $lang = $_SESSION['lang'];
 unset($_SESSION['NombreUsuario']);
-header("Location: /index.php?lang=" . $lang);
+header("Location: /index.php?lang=" . $lang . "&logout=success");
 exit();
 
 ?>

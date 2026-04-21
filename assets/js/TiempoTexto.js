@@ -139,96 +139,93 @@ function empezarEscribirtexto() {
                 } else {
                     resultadoFinal=puntuacion-erroresTexto;
                 }
-                resultado.innerHTML =
-                    Aciertos + puntuacion + " &nbsp;&nbsp;&nbsp;" +
-                    Errores + erroresTexto + "<br> <br>" + "<span class='puntuacion'>" + Puntuacion + (resultadoFinal)
-                    + "</span>";
 
-                //Actualizamos la puntuacion en la base de datos
-                fetch('assets/db/ActualizarPuntuacion.php', {
-                    method: 'POST',
-                    credentials: 'same-origin',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: `juego=TiempoTexto&puntuacion=${resultadoFinal}`
-                });
-                /* 
-                    .then(res => res.text())
-                    .then(data => console.log("Respuesta PHP:", data))
-                    .catch(err => console.error("Error:", err)); */
-                document.querySelector(".puntuacion").style.fontSize = "20px";
-                // Obtener el grosor actual del borde
-                let grosorActual = window.getComputedStyle(resultado).borderWidth;
-                // Convertir a número
-                let grosor = parseInt(grosorActual);
-                // Aumentar el grosor
-                grosor += 5;
-                // Aplicar el nuevo borde
-                resultado.style.borderWidth = grosor + "px";
-                //inhabilitamos la escritura
-                textarea.readOnly = true;
-                // Activamos transición
-                reintentar.classList.remove("oculto");
-                reintentar.classList.remove("mostrar");
-                resultado.classList.remove("oculto");
-                resultado.classList.remove("mostrar");
+                // Función interna para manejar la puntuación de forma asíncrona y evitar condiciones de carrera
+                const procesarRecordYActualizar = async () => {
+                    if (sessionStorage.getItem('usuarioLogeado') === 'true') {
+                        try {
+                            // 1. Comprobar si es máxima puntuación ANTES de actualizar la DB
+                            const esMaxima = await esPuntuacionMaxima("TiempoTexto", resultadoFinal);
 
-                // forzamos el recalculado de estilos
-                resultado.offsetHeight;
-                reintentar.offsetHeight;
-                resultado.classList.add("mostrar");
-                reintentar.classList.add("mostrar");
+                            if (esMaxima) {
+                                resultado.classList.add("nueva-puntuacion-maxima");
+                                if (sessionStorage.getItem('idioma') == "en") {
+                                    resultado.style.setProperty('--record-text', '"Personal"');
+                                    resultado.style.setProperty('--personal-text', '"Record"');
+                                    resultado.style.setProperty('--right-position', '-100px');
+                                }
+                            }
+                            // 2. Actualizar puntos en la DB
+                            ActualizaPuntos("TiempoTexto", resultadoFinal);
+                        } catch (error) {
+                            console.error('Error al verificar puntuación máxima:', error);
+                        }
+                    }
 
-                //animacion de salida y entrada de el boton y el textarea respectivamente
-                const botonSalida = document.querySelector(".botonEmpezarTiempo-TiempoTexto");
-                const textareaSalida = document.querySelector(".textoUsuario-TiempoTexto");
-                contenedor = document.querySelector(".textAreaBotones-TiempoTexto");
+                    // 3. Actualizar la UI final
+                    resultado.innerHTML =
+                        Aciertos + puntuacion + " &nbsp;&nbsp;&nbsp;" +
+                        Errores + erroresTexto + "<br> <br>" + "<span class='puntuacion'>" + Puntuacion + (resultadoFinal)
+                        + "</span>";
 
-                botonSalida.classList.add("oculto");
-                contenedor.classList.add("transformado");
+                    document.querySelector(".puntuacion").style.fontSize = "20px";
+                    let grosorActual = window.getComputedStyle(resultado).borderWidth;
+                    let grosor = parseInt(grosorActual);
+                    grosor += 5;
+                    resultado.style.borderWidth = grosor + "px";
 
-                textareaSalida.classList.remove("oculto");
-                textareaSalida.readOnly = false;
+                    textarea.readOnly = true;
+                    reintentar.classList.remove("oculto");
+                    reintentar.classList.remove("mostrar");
+                    resultado.classList.remove("oculto");
+                    resultado.classList.remove("mostrar");
 
-                setTimeout(() => {
+                    resultado.offsetHeight;
+                    reintentar.offsetHeight;
+                    resultado.classList.add("mostrar");
+                    reintentar.classList.add("mostrar");
 
-                }, 300);
+                    const botonSalida = document.querySelector(".botonEmpezarTiempo-TiempoTexto");
+                    const textareaSalida = document.querySelector(".textoUsuario-TiempoTexto");
+                    let contenedorLocal = document.querySelector(".textAreaBotones-TiempoTexto");
 
-                //aumentamos el tamaño del tiempo cuando se inicia el temporizador
-                const textoTiempo = document.querySelector(".tiempo");
-                textoTiempo.style.fontSize = "20px";
+                    botonSalida.classList.add("oculto");
+                    contenedorLocal.classList.add("transformado");
 
-                //cambiamos el foco para que sea ponerse a escribir directamente
-                const input = document.querySelector(".textoUsuario-TiempoTexto");
-                input.disabled = false;
+                    textareaSalida.classList.remove("oculto");
+                    textareaSalida.readOnly = false;
 
-                //deshabilitamos el boton para que no se pueda volver a iniciar la secuencia de escritura
-                const boton = document.querySelector(".botonEmpezarTiempo-TiempoTexto");
-                //modo deshabilitado
-                boton.style.display = "none";
-                //Habilitamos el textarea para poder escribir en el y cambiamos el fondo para que 
-                //se lea mejor
+                    const textoTiempoUI = document.querySelector(".tiempo");
+                    textoTiempoUI.style.fontSize = "20px";
 
-                textarea = document.querySelector(".textoUsuario-TiempoTexto");
-                textarea.classList.remove("oculto");
-                textarea.disabled = true;
-                textarea.readOnly = true;
-                textarea.style.color = "grey";
+                    const input = document.querySelector(".textoUsuario-TiempoTexto");
+                    input.disabled = false;
 
-                // pequeño delay para que la animación se note
-                setTimeout(() => {
-                    textarea.focus();
-                }, 200);
-                //Ocultamos el tiempo
-                ocultarDivTiempo();
-                //quitamos el boxshadow de todos los elementos menos de la puntuacion
-                const divTexto = document.querySelector(".divTexto");
-                const botonReintentar = document.querySelector(".reintentar");
-                botonReintentar.style.display = "inline";
-                divTexto.style.boxShadow = "none";
-                textarea.style.boxShadow = "none";
-                botonReintentar.style.boxShadow = "none";
-                //Actualizamos el tiempo 
-                tiempoTextoUsuario = tiempoLimite;
+                    const boton = document.querySelector(".botonEmpezarTiempo-TiempoTexto");
+                    boton.style.display = "none";
+
+                    textarea.classList.remove("oculto");
+                    textarea.disabled = true;
+                    textarea.readOnly = true;
+                    textarea.style.color = "grey";
+
+                    setTimeout(() => {
+                        textarea.focus();
+                    }, 200);
+
+                    ocultarDivTiempo();
+
+                    const divTexto = document.querySelector(".divTexto");
+                    const botonReintentar = document.querySelector(".reintentar");
+                    botonReintentar.style.display = "inline";
+                    divTexto.style.boxShadow = "none";
+                    textarea.style.boxShadow = "none";
+                    botonReintentar.style.boxShadow = "none";
+
+                    tiempoTextoUsuario = tiempoLimite;
+                };
+
+                procesarRecordYActualizar();
 
             }, 1000);
 
@@ -270,17 +267,3 @@ function bloquearEvento(e) {
     e.preventDefault(); // evita acción por defecto
     e.stopPropagation(); // evita que otros listeners lo reciban
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

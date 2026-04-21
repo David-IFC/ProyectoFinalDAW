@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 // Contraseña correcta
                 $_SESSION['NombreUsuario'] = $usuario;
 
-                header("Location: /IniciarSesion.php?lang=".$lang);
+                header("Location: /IniciarSesion.php?lang=".$lang."&login=success");
                 exit();
             } else {
                 $_SESSION["ContraMal"] = true;

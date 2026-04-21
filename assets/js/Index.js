@@ -5,6 +5,14 @@ const links = details.querySelectorAll('a');
 
 var idiomaActivo;
 
+// Eliminar sessionStorage si el usuario cerró sesión
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('logout') === 'success') {
+    sessionStorage.removeItem('usuarioLogeado');
+    // Limpiar el parámetro de la URL
+    window.history.replaceState({}, document.title, window.location.pathname + window.location.search.replace(/[?&]logout=success/, ''));
+}
+
 if (!sessionStorage.getItem("idiomaInicializado")) {
 
     idiomaActivo = 'es';

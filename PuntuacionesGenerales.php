@@ -26,7 +26,7 @@ $stmt = $conexion->prepare("
         p.Sudoku_mejor,
         p.Punteria_mejor
     FROM usuarios u
-    LEFT JOIN puntuaciones p ON p.usuario_id = u.id
+    INNER JOIN puntuaciones p ON p.usuario_id = u.id
     ORDER BY u.user ASC
 ");
 $stmt->execute();

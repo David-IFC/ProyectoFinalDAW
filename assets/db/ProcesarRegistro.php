@@ -51,8 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 $stmt = null;
                 $conexion = null;
-                /* header("Location:  /Registro.php");
-                exit(); */
+
             }
         }
 
