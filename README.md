@@ -21,8 +21,6 @@ En este repositorio se encuentra la entrega del proyecto final del curso de **De
 
 ## 📐Diseño (Figma)
 
-Puedes ver el esquema del proyecto en Figma aquí:
-
 [Ver esquema en Figma](https://www.figma.com/design/vuSomeRvw7NpGc0NnHxEyj/EsquemaProyectoFinalDAW?node-id=0-1&p=f)
 
 ---
