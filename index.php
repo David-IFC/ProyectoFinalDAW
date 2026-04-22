@@ -31,9 +31,11 @@ $animacionInicial = $_SESSION['Animacion']?? true;
             onclick="transicion('IniciarSesion.php?lang=<?php echo $lang; ?>' )"><?php echo $texto["iniciarSesion"] ?></button>
     </div>
 <?php endif; ?>
-<div class="logo">
-    <img src="assets/img/Logo.png" alt="Logo">
-</div>
+<a href="https://github.com/David-IFC/ProyectoFinalDAW" target="_blank">
+    <div class="logo">
+        <img src="assets/img/Logo.png" alt="Logo">
+    </div>
+</a>
 
 <main>
     <button class="BotonMenuPrincipal" onclick="transicion('TiempoTexto.php?lang=<?php echo $lang; ?>')">

@@ -360,43 +360,66 @@ function gestionTemporal() {
 
                     }
 
-                    let resultadoFinal = Math.max(0, aciertos - errores);
-                    //Actualizamos la puntuacion en la base de datos
-                    ActualizaPuntos("Sudoku", resultadoFinal);
                     const resultado = document.querySelector(".resultadoTiempo");
-                    resultado.classList.remove("oculto");
-                    resultado.classList.add("mostrar");
-                    resultado.style.display = "block";
-                    resultado.style.opacity = "1";
-                    resultado.style.transform = "translateY(-8px) scale(1)";
 
-                    resultado.offsetHeight;
-                    if (sessionStorage.getItem('idioma') == "es") {
-                        resultado.innerHTML =
-                            "Aciertos: " + aciertos + " &nbsp;&nbsp;&nbsp;" +
-                            "Errores: " + errores + "<br> <br>" + "<span class='puntuacion'> Puntuacion: " + resultadoFinal
-                            + "</span>";
+                    // Función interna para manejar la puntuación de forma asíncrona
+                    const procesarRecordYActualizar = async () => {
+                        let puntuacionFinal = Math.max(0, aciertos - errores);
 
-                    } else if (sessionStorage.getItem('idioma') == "en") {
+                        if (sessionStorage.getItem('usuarioLogeado') === 'true') {
+                            try {
+                                // 1. Comprobar si es máxima puntuación ANTES de actualizar la DB
+                                const esMaxima = await esPuntuacionMaxima("Sudoku", puntuacionFinal);
 
-                        resultado.innerHTML =
-                            "Hits: " + aciertos + " &nbsp;&nbsp;&nbsp;" +
-                            "Mistakes: " + errores + "<br> <br>" + "<span class='puntuacion'> Score: " + resultadoFinal
-                            + "</span>";
-                    }
+                                if (esMaxima) {
+                                    resultado.classList.add("nueva-puntuacion-maxima");
+                                    if (sessionStorage.getItem('idioma') == "en") {
+                                        resultado.style.setProperty('--record-text', '"Personal"');
+                                        resultado.style.setProperty('--personal-text', '"Record"');
+                                        resultado.style.setProperty('--right-position', '-100px');
+                                    }
+                                }
+                                // 2. Actualizar puntos en la DB
+                                ActualizaPuntos("Sudoku", puntuacionFinal);
+                            } catch (error) {
+                                console.error('Error al verificar puntuación máxima:', error);
+                            }
+                        }
 
-                    document.querySelector(".puntuacion").style.fontSize = "20px";
-                    let grosorActual = window.getComputedStyle(resultado).borderWidth;
-                    // Convertir a número
-                    let grosor = parseInt(grosorActual);
-                    // Aumentar el grosor
-                    grosor += 5;
-                    resultado.style.borderWidth = grosor + "px";
-                    const botonReintentar = document.querySelector(".reintentar");
-                    botonReintentar.classList.remove("oculto");
-                    botonReintentar.style.display = "inline";
-                    botonReintentar.style.boxShadow = "none";
-                    // forzamos el recalculado de estilos
+                        // 3. Mostrar resultados y aplicar estilos neón
+                        resultado.classList.remove("oculto");
+                        resultado.classList.add("mostrar");
+                        resultado.style.display = "block";
+                        resultado.style.opacity = "1";
+                        resultado.style.transform = "translateY(-8px) scale(1)";
+
+                        resultado.offsetHeight;
+                        if (sessionStorage.getItem('idioma') == "es") {
+                            resultado.innerHTML =
+                                "Aciertos: " + aciertos + " &nbsp;&nbsp;&nbsp;" +
+                                "Errores: " + errores + "<br> <br>" + "<span class='puntuacion'> Puntuacion: " + puntuacionFinal
+                                + "</span>";
+
+                        } else if (sessionStorage.getItem('idioma') == "en") {
+
+                            resultado.innerHTML =
+                                "Hits: " + aciertos + " &nbsp;&nbsp;&nbsp;" +
+                                "Mistakes: " + errores + "<br> <br>" + "<span class='puntuacion'> Score: " + puntuacionFinal
+                                + "</span>";
+                        }
+
+                        document.querySelector(".puntuacion").style.fontSize = "20px";
+                        let grosorActual = window.getComputedStyle(resultado).borderWidth;
+                        let grosor = parseInt(grosorActual) + 5;
+                        resultado.style.borderWidth = grosor + "px";
+
+                        const botonReintentar = document.querySelector(".reintentar");
+                        botonReintentar.classList.remove("oculto");
+                        botonReintentar.style.display = "inline";
+                        botonReintentar.style.boxShadow = "none";
+                    };
+
+                    procesarRecordYActualizar();
 
                 }
             }, 1000);

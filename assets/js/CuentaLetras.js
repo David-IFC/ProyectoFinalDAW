@@ -222,28 +222,59 @@ function empezar() {
 
                 }
 
-                //Se acaba el temporizador
+                // Se acaba el temporizador
                 clearInterval(pararTiempo);
                 restaurarVelocidadParticulas();
-                //Actualizamos la puntuacion en la base de datos
-                ActualizaPuntos("CuentaLetras", resultado);
-                //ocultamos el reloj
+
+                // Función interna para manejar la puntuación de forma asíncrona
+                const procesarRecordYActualizar = async () => {
+                    const puntuacionFinal = aciertos - errores;
+                    const resultadoFinal = Math.max(0, puntuacionFinal);
+                    const panelResultados = document.querySelector(".resultadoTiempo");
+
+                    if (sessionStorage.getItem('usuarioLogeado') === 'true') {
+                        try {
+                            // 1. Comprobar si es máxima puntuación ANTES de actualizar la DB
+                            const esMaxima = await esPuntuacionMaxima("CuentaLetras", resultadoFinal);
+
+                            if (esMaxima) {
+                                panelResultados.classList.add("nueva-puntuacion-maxima");
+                                if (sessionStorage.getItem('idioma') == "en") {
+                                    panelResultados.style.setProperty('--record-text', '"Personal"');
+                                    panelResultados.style.setProperty('--personal-text', '"Record"');
+                                    panelResultados.style.setProperty('--right-position', '-100px');
+                                }
+                            }
+                            // 2. Actualizar puntos en la DB
+                            ActualizaPuntos("CuentaLetras", resultadoFinal);
+                        } catch (error) {
+                            console.error('Error al verificar puntuación máxima:', error);
+                        }
+                    }
+
+                    // 3. Mostrar resultados y aplicar estilos neón unificados
+                    document.querySelector(".divResultados").classList.remove("oculto");
+                    panelResultados.classList.add("mostrar");
+                    panelResultados.style.display = "block";
+                    panelResultados.style.opacity = "1";
+                    panelResultados.style.transform = "translateY(-8px) scale(1)";
+
+                    // Ajustar grosor del borde
+                    let grosorActual = window.getComputedStyle(panelResultados).borderWidth;
+                    let grosor = parseInt(grosorActual) + 5;
+                    panelResultados.style.borderWidth = grosor + "px";
+
+                    const reintentar = document.querySelector(".reintentar");
+                    reintentar.classList.remove("oculto");
+                    reintentar.classList.add("mostrar");
+                    reintentar.style.boxShadow = "none";
+                };
+
+                procesarRecordYActualizar();
+
+                // Ocultar elementos de juego
                 ocultarDivTiempo();
-                //ocultamos el texto informativo
                 document.querySelector(".textoInformativo").style.display = "none";
-                //mostramos los resultados
-                document.querySelector(".divResultados").classList.remove("oculto");
-                //mostramos el boton reintentar
-                //Actualizamos la tabla de resultados y mostramos el boton reintentar
-                const reintentar = document.querySelector(".reintentar");
-                // Activamos transición
-                reintentar.classList.remove("oculto");
-
-                reintentar.classList.add("mostrar");
-
-                reintentar.style.boxShadow = "none";
-                //hacemos que no se pueda interactuar con la lista de palabras a contar
-
                 document.querySelector(".palabrasLetrasAContrar").style.pointerEvents = "none";
 
 

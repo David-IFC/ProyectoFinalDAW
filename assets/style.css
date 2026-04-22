@@ -221,14 +221,22 @@ body.index .copy {
 }
 
 
-body.index .logo {
+body.index a:has(.logo) {
+    display: inline-block;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
 
+body.index a:has(.logo):hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 15px rgba(0, 255, 204, 0.6));
+}
+
+body.index .logo {
     position: relative;
     display: inline-block;
     margin-top: -10px;
     margin-bottom: -100px;
-
-
 }
 
 body.index .destacarUsuario {
@@ -793,7 +801,8 @@ body.Punteria .transformado .textoUsuario-TiempoTexto {
 
 body.TiempoTexto .resultadoTiempo,
 body.Sudoku .resultadoTiempo,
-body.Punteria .resultadoTiempo {
+body.Punteria .resultadoTiempo,
+body.cuentaletras .resultadoTiempo {
 
     border-radius: var(--radius-lg);
     background: rgba(0, 0, 0, 0.2);
@@ -864,7 +873,8 @@ body.Punteria .oculto {
 
 body.TiempoTexto .resultadoTiempo.mostrar,
 body.Sudoku .resultadoTiempo.mostrar,
-body.Punteria .resultadoTiempo.mostrar {
+body.Punteria .resultadoTiempo.mostrar,
+body.cuentaletras .resultadoTiempo.mostrar {
     display: block;
     margin: 10px auto;
     padding: 5px;
