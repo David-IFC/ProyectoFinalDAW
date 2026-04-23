@@ -1896,3 +1896,16 @@ body.Puntuaciones .tabla-general th.col-usuario {
         padding: 6px 10px;
     }
 }
+
+@media (max-width: 740px) {
+    /* Ajuste final para evitar desbordamiento del récord en móviles */
+    .resultadoTiempo.nueva-puntuacion-maxima::before {
+        font-size: 13px !important;
+        left: -70px !important; 
+    }
+
+    .resultadoTiempo.nueva-puntuacion-maxima::after {
+        font-size: 13px !important;
+        right: -70px !important; 
+    }
+}
