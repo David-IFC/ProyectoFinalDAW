@@ -57,6 +57,3 @@ Velocidad de movimiento del raton
 - **Ranking**:
   - Consulta de puntuaciones propias
   - Comparación con otros usuarios
-
-
-Ejemplo de prueba local
