@@ -9,18 +9,19 @@ $java = "Index.js";
 $copy = true;
 $idioma = true;
 $nombreUsuario = $_SESSION['NombreUsuario'] ?? null;
-$animacionInicial = $_SESSION['Animacion']?? true;
+$animacionInicial = $_SESSION['Animacion'] ?? true;
 ?>
 <?php include "assets/phpComponentes/BeforeMain.php"; ?>
 <?php if ($nombreUsuario && $animacionInicial): ?>
     <div class="botonesRegistro">
-        <button class="destacarUsuario"  onclick="transicion('Puntuaciones.php?lang=<?php echo $lang; ?>' )"><?php echo $nombreUsuario ?> </button>
+        <button class="destacarUsuario"
+            onclick="transicion('Puntuaciones.php?lang=<?php echo $lang; ?>' )"><?php echo $nombreUsuario ?> </button>
         <button
             onclick="transicion('assets/db/ProcesarCerrarSesion.php?lang=<?php echo $lang; ?>' )"><?php echo $texto["CerrarSesion"] ?></button>
     </div>
 <?php elseif ($nombreUsuario): ?>
     <div class="botonesRegistro">
-        <button  onclick="transicion('Puntuaciones.php?lang=<?php echo $lang; ?>' )"><?php echo $nombreUsuario ?> </button>
+        <button onclick="transicion('Puntuaciones.php?lang=<?php echo $lang; ?>' )"><?php echo $nombreUsuario ?> </button>
         <button
             onclick="transicion('assets/db/ProcesarCerrarSesion.php?lang=<?php echo $lang; ?>' )"><?php echo $texto["CerrarSesion"] ?></button>
     </div>
